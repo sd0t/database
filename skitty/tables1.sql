@@ -3,6 +3,19 @@
  * DATE 	10/26/2017
  * COURSE   CIS444 
  * PURPOSE  {s.dot} Database 
+ 
+ Users(UserID, Username, Fname, Lname, Password)
+ Project(ProjectID, ProjectName, ProjectSummary)
+ ProjectMember(PMProjectID,PMUserID)
+ Tasks(TaskID, Priority, Task, Complete, SCRUM, Remarks,
+ 			      					TProjectID, TAssignedID)
+ Bugs(BugID, SourceFile, Location, Description, Status, 
+						BProjectID, BReporterID, BAssienedID)
+ Fourm(FourmID, Comment, 
+ 										FProjectID, FUserID)
+
+
+
  */
 
 DROP TABLE USERS;

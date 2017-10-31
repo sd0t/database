@@ -12,6 +12,9 @@ DROP TABLE MEMBERS;
 DROP TABLE TASKS;
 DROP TABLE BUGS;
 DROP TABLE FOURMS;
+- Assign bugs or fix bugs 
+
+
 */
 
 /*Bug Tracking Table*/

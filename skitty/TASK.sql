@@ -13,7 +13,13 @@ CREATE TABLE TASKS(
 	TaskComplete VARCHAR(5) NOT NULL,
 	SCRUM INT(3) NOT NULL,
 	TaskRemarks VARCHAR(50) NOT NULL,
-	TaskAssigned_ID INT(6) NOT NULL,
 
 	CONSTRAINT Task_PK PRIMARY KEY(Task_ID)
+/*
+TProjectID
+TAssignedID
+TaskAssigned_ID INT(6) NOT NULL,
+
+*/
+
 );
