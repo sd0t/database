@@ -32,24 +32,25 @@ CREATE TABLE USERS(
 	User_ID INT NOT NULL AUTO_INCREMENT,
 	Username VARCHAR(20) NOT NULL,
 	Password VARCHAR(20) NOT NULL,
+	Email VARCHAR(20) NOT NULL,
 
 	CONSTRAINT Users_PK PRIMARY KEY (User_ID),
 	CONSTRAINT Username UNIQUE(Username)
 );
 
 
-/*Inserting users*/
+/*Inserting users
 INSERT INTO USERS (Username,Password)
 VALUES	('kitty','6666'),
 ('Max','6666'),
 ('Cody','6666'),
 ('ALex','6666'),
 ('Victor','6666');
-
-/*Deleting users*/
+Deleting users
 DELETE FROM USERS WHERE Password=6666;
-/*ALTER TABLE table_name AUTO_INCREMENT = 1;*/
+ALTER TABLE table_name AUTO_INCREMENT = 1;
 ALTER TABLE USERS AUTO_INCREMENT = 1;
+*/
 
 /*Projects Table*/
 CREATE TABLE PROJECTS(
