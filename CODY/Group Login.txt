@@ -1,0 +1,5 @@
+mysql -u group_e -p
+
+c1qcbDQnorQXiiU8
+
+Use group_e;

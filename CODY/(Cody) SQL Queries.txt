@@ -1,0 +1,199 @@
+Notes - [brackets] indicate a variable or user fill-in from the page in the example query
+
+//New User
+
+User fills out page, upon clicking Submit run query
+
+INSERT INTO Users (Username, FName, LName, Password, Email) VALUES ('[Username_Field]', '[FirstName_Field]', '[LastName_Field]', '[Password_Field]', '[Email_Field]');
+
+then return to the login page.
+
+ 
+
+//Login
+
+User fills in username and password, upon clicking Submit run query
+
+SELECT Password FROM Users WHERE Username = '[Username_Field]';
+
+and compare return to [Password_Field].
+
+If equal then run query
+
+SELECT UserID FROM Users WHERE Username = '[Username_Field]';
+
+and save the UserID to a permanent variable that can be transferred from page to page.
+
+Else reject login and display an error.
+
+
+ 
+//Choose Project
+
+To dynamically fill in the page, run the following query
+
+SELECT ProjectName FROM Projects, ProjectMembers WHERE (PMUserID = [UserID_Variable]) AND (ProjectID = PMProjectID);
+
+then set the project names on the page as choose-able links.  
+
+Once a link is chosen, run the following query
+
+SELECT ProjectID FROM Projects WHERE ProjectName = '[ProjectName_Chosen]';
+
+And save as a permanent variable that can be taken page to page.
+ 
+
+
+//Create Project
+
+User fills out the form, upon Submit run the query
+
+INSERT INTO Projects (ProjectName, ProjectSummary) VALUES ('[ProjectName_Field]','[ProjectSummary_Field]');
+
+Then we must add the creating user to the new project for access, save the new ProjectID to a temp variable
+
+SELECT ProjectID FROM Projects WHERE ProjectName = ‘[ProjectName_Field]’;
+
+and insert it into the ProjectMembers table
+
+INSERT INTO ProjectMembers VALUES ('[ProjectID_Temp_Variable]', '[UserID_Variable]');
+
+then take back to the Choose Project page.
+
+ 
+
+//User Preferences
+
+To dynamically fill in the page, run the query
+
+SELECT Username, FName, LName, Password, Email FROM Users WHERE UserID = [UserID_Variable];
+
+then fill the data into the appropriate fields on the webpage form.
+
+User can change everything but UserID, upon clicking Submit run update query
+
+UPDATE Users SET Username = [Username_Field], FName = [FName_Field], LName = [LName_Field], Password = [Password_Field], Email = [Email_Field] WHERE UserID = [UserID_Variable];
+
+else cancel takes you back to Choose Project.
+
+
+
+//Project Preferences
+
+To dynamically fill in project info, run the query
+
+SELECT ProjectName, ProjectSummary FROM Projects WHERE ProjectID = [ProjectID_Variable];
+
+then fill in the appropriate form fields on the webpage form.
+
+To fill in to User Access area of who has access to this project, run the query
+
+SELECT Username FROM Users, ProjectMembers WHERE (PMProjectID = [ProjectID_Variable]) AND (UserID = PMUserID);
+
+To show all usernames for an add member to project function, run the query
+
+SELECT Username FROM Users;
+
+User can change everything but ProjectID, upon clicking submit run update query
+
+UPDATE Projects SET ProjectName = [ProjectName_Field], ProjectSummary = [ProjectSummary_Field] WHERE ProjectID = [ProjectID_Variable];
+
+To add a user for access, choose a username and get their UserID by running the query
+
+SELECT UserID FROM Users WHERE Username = '[Username_Choosen]';
+
+and save to a temp variable then run the query
+
+INSERT INTO ProjectMembers VALUES ([ProjectID_Variable], [UserID_Temp]);
+
+To remove a user from access, choose a username and get their UserID by running the query
+
+SELECT UserID FROM Users WHERE Username = '[Username_Chosen]';
+
+and save to a temp variable then run the query
+
+DELETE FROM ProjectMembers WHERE (PMProjectID = [ProjectID Variable]) AND (PMUserID = [UserID_Temp]);
+
+ 
+
+//Project Hub
+
+Just displays links to the three main pages (Tasks, Bugs and Forum) however we can display project info at the top by running the query
+
+SELECT ProjectName, ProjectSummary FROM Projects WHERE ProjectID = [ProjectID_Variable];
+
+and parsing the data to the form.
+
+ 
+
+//Tasks
+
+To dynamically fill in the table on the page (sorted by Task ID), run the query
+
+SELECT TaskID, Priority, Task, Complete, Username, SCRUM, Remarks FROM Tasks, Users WHERE (TProjectID = [ProjectID_Variable]) AND (UserID = TAssignedID);
+
+then fill in the appropriate form fields on the webpage form.
+
+To populate the assigned user dropdown, run the query
+
+SELECT Username FROM Users, ProjectMembers WHERE (PMProjectID = [ProjectID_Variable]) AND (UserID = PMUserID);
+
+To get the chosen usernames UserID:
+
+SELECT UserID FROM Users WHERE Username = '[Username_Chosen]';
+
+And save to a UsedID temp variable.
+
+To add new task run the query
+
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('[Priority_Field]','[Task_Field]','[Complete_Field]', [SCRUM_Field], '[Remarks_Field]', [ProjectID_Variable], [UserID_Temp_Variable]);
+
+User can change all fields except Task ID, upon clicking Submit run update query
+
+UPDATE Tasks SET Priority = [Priority_Field], Task = [Tasks_Field], Complete [Complete_Field], SCRUM = [SCRUM_Field], Remarks = [Remarks_Field], TProjectID = [ProjectID_Variable], TAssignedID = [UserID_Temp_Variable] WHERE TaskID = [ValueOf_TaskID_Field];
+
+
+
+//Bugs
+
+To dynamically fill in the table on the page (sorted by BugID), run the query
+
+SELECT BugID, Users1.Username, Users2.Username, SourceFile, Location, Description, Status FROM Bugs, Users Users1, Users Users2 WHERE (BProjectID = [ProjectID_Variable]) AND (Users1.UserID = BReporterID) AND (Users2.UserID = BAssignedID);
+
+then fill in the appropriate form fields on the webpage form.
+
+To populate the assigned and reporter user dropdown options, run the query
+
+SELECT Username FROM Users, ProjectMembers WHERE (PMProject = [ProjectID_Variable]) AND (UserID = PMUserID);
+
+To get the chosen usernames UserID, run the query
+
+SELECT UserID FROM Users WHERE Username = '[Username_Chosen]';
+
+and add to a temp variable for either Assigned or Reporter.
+
+To add new bug, run the query
+
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('[SourceFile_Field]', '[Location_Field]', '[Description_Field]', '[Status_Field]', [ProjectID_Variable], [ReporterID_Temp_Variable], [AssignedID_Temp_Variable]);
+
+User can change all fields but BugID, upon clicking Submit run update query
+
+UPDATE Bugs SET SourceFile = (SourceFile_Field), Location = (Location_Field), Description = (Description_Field), Status = (Status_Field), BProjectID = [ProjectID_Variable], BReporterID = [ReporterID_Temp_Variable], BAssignedID = [AssignedID_Temp_Variable] WHERE BugID = [ValueOf_BugID_Field];
+
+
+
+//Forum
+
+To dynamically fill in the table on the page (Oldest to Newest), run the query
+
+SELECT Username, Comment FROM Users, Forum WHERE (FProjectID = [ProjectID_Variable]) AND (UserID = FUserID);
+
+To add a comment, run the query
+
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('[Comment_Field]', [ProjectID_Variable], [UserID_Variable]);
+ 
+ 
+
+//Logout
+No SQL Calls, Delete Cookies
+

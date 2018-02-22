@@ -1,0 +1,101 @@
+//NOTES - AUTO_INCREMENT does not work in Oracle / Sql Plus, only MySql
+//NOTES - MySql does not recognize NUMBER as a variable type
+
+//Drop Previous Tables (in this order due to foreign key constraints)
+
+DROP TABLE Forum;
+DROP TABLE Bugs;
+DROP TABLE Tasks;
+DROP TABLE ProjectMembers;
+DROP TABLE Projects;
+DROP TABLE Users;
+
+//Create Users
+
+CREATE TABLE Users
+(
+UserID INT NOT NULL AUTO_INCREMENT, 
+Username VARCHAR(20) NOT NULL, 
+FName VARCHAR(20) NOT NULL, 
+LName VARCHAR(20) NOT NULL, 
+Password VARCHAR(20) NOT NULL, 
+Email VARCHAR(30) NOT NULL,
+CONSTRAINT UserPK PRIMARY KEY (UserID),
+CONSTRAINT UniqueUser UNIQUE (Username)
+);
+
+
+//Create Projects
+
+CREATE TABLE Projects
+(
+ProjectID INT NOT NULL AUTO_INCREMENT, 
+ProjectName VARCHAR(50) NOT NULL, 
+ProjectSummary VARCHAR(1000),
+CONSTRAINT ProjectPK PRIMARY KEY (ProjectID)
+);
+
+
+//Create ProjectMembers
+
+CREATE TABLE ProjectMembers
+(
+PMProjectID INT NOT NULL,
+PMUserID INT NOT NULL,
+CONSTRAINT ProjectFK FOREIGN KEY (PMProjectID) REFERENCES Projects (ProjectID),
+CONSTRAINT UserFK FOREIGN KEY (PMUserID) REFERENCES Users (UserID)
+);
+
+
+//Create Tasks
+
+CREATE TABLE Tasks
+(
+TaskID INT NOT NULL AUTO_INCREMENT,
+Priority VARCHAR(6) NOT NULL,
+Task VARCHAR(200) NOT NULL,
+Complete CHAR(5) NOT NULL,
+SCRUM INT NOT NULL,
+Remarks VARCHAR(500),
+TProjectID INT NOT NULL,
+TAssignedID INT NOT NULL,
+CONSTRAINT TaskPK PRIMARY KEY (TaskID),
+CONSTRAINT TProjectFK FOREIGN KEY (TProjectID) REFERENCES Projects (ProjectID),
+CONSTRAINT TUserFK FOREIGN KEY (TAssignedID) REFERENCES Users (UserID),
+CONSTRAINT CompleteCheck CHECK (Complete='false' OR Complete='true'),
+CONSTRAINT PriorityCheck CHECK (Priority='Low' OR Priority='Medium' OR Priority='High')
+);
+
+
+//Create Bugs
+
+CREATE TABLE Bugs
+(
+BugID INT NOT NULL AUTO_INCREMENT,
+SourceFile VARCHAR(50) NOT NULL,
+Location VARCHAR(250) NOT NULL,
+Description VARCHAR(500) NOT NULL,
+Status VARCHAR(25) NOT NULL,
+BProjectID INT NOT NULL,
+BReporterID INT NOT NULL,
+BAssignedID INT NOT NULL,
+CONSTRAINT BugsPK PRIMARY KEY (BugID),
+CONSTRAINT BProjectFK FOREIGN KEY (BProjectID) REFERENCES Projects (ProjectID),
+CONSTRAINT BReporterFK FOREIGN KEY (BReporterID) REFERENCES Users (UserID),
+CONSTRAINT BAssignedFK FOREIGN KEY (BAssignedID) REFERENCES Users (UserID),
+CONSTRAINT StatusCheck CHECK (Status='Unassigned' OR Status='Low Priority' OR Status='Med Priority' OR Status='High Priority')
+);
+
+
+//Create Forum
+
+CREATE TABLE Forum
+(
+ForumID INT NOT NULL AUTO_INCREMENT,
+Comment VARCHAR(3000) NOT NULL,
+FProjectID INT NOT NULL,
+FUserID INT NOT NULL,
+CONSTRAINT ForumPK PRIMARY KEY (ForumID),
+CONSTRAINT FProjectFK FOREIGN KEY (FProjectID) REFERENCES Projects (ProjectID),
+CONSTRAINT FUserFK FOREIGN KEY (FUserID) REFERENCES Users (UserID)
+);

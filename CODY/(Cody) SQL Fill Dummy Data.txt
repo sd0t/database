@@ -1,0 +1,85 @@
+//Populate Users
+
+INSERT INTO Users (Username, FName, LName, Password, Email) VALUES ('solley', 'Cody', 'Solley', '1234', 'solley@none.com');
+INSERT INTO Users (Username, FName, LName, Password, Email) VALUES ('nguyen', 'Denise', 'Nguyen', '1234', 'nguyen@none.com');
+INSERT INTO Users (Username, FName, LName, Password, Email) VALUES ('zavala', 'Victor', 'Zavala', '1234', 'zavala@none.com');
+INSERT INTO Users (Username, FName, LName, Password, Email) VALUES ('hom', 'Alex', 'Hom', '1234', 'hom@none.com');
+INSERT INTO Users (Username, FName, LName, Password, Email) VALUES ('harrell', 'Max', 'Harrell', '1234', 'harrell@none.com');
+
+
+//Populate Projects
+
+INSERT INTO Projects (ProjectName, ProjectSummary) VALUES ('Dummy1', 'This is Dummy1 Project');
+INSERT INTO Projects (ProjectName, ProjectSummary) VALUES ('Dummy2', 'This is Dummy2 Project');
+INSERT INTO Projects (ProjectName, ProjectSummary) VALUES ('Dummy3', 'This is Dummy3 Project');
+
+
+//Populate ProjectMembers
+
+INSERT INTO ProjectMembers VALUES (1,1);
+INSERT INTO ProjectMembers VALUES (1,2);
+INSERT INTO ProjectMembers VALUES (1,3);
+INSERT INTO ProjectMembers VALUES (1,4);
+INSERT INTO ProjectMembers VALUES (1,5);
+INSERT INTO ProjectMembers VALUES (2,1);
+INSERT INTO ProjectMembers VALUES (2,2);
+INSERT INTO ProjectMembers VALUES (2,3);
+INSERT INTO ProjectMembers VALUES (3,4);
+INSERT INTO ProjectMembers VALUES (3,5);
+
+
+//Populate Tasks
+
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Low', 'DummyTask1', 'false', 1, 'None', 1, 1);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Low', 'DummyTask2', 'false', 1, 'None', 1, 2);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Medium', 'DummyTask3', 'false', 3, 'None', 2, 3);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Medium', 'DummyTask4', 'false', 2, 'None', 2, 2);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('High', 'DummyTask5', 'true', 5, 'None', 3, 5);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Low', 'DummyTask6', 'false', 1, 'None', 1, 2);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Low', 'DummyTask7', 'false', 1, 'None', 2, 2);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Medium', 'DummyTask8', 'false', 3, 'None', 2, 3);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Medium', 'DummyTask9', 'false', 2, 'None', 3, 4);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('High', 'DummyTask10', 'true', 5, 'None', 3, 5);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Low', 'DummyTask11', 'false', 1, 'None', 1, 5);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Low', 'DummyTask12', 'false', 1, 'None', 1, 3);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Medium', 'DummyTask13', 'false', 3, 'None', 2, 3);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('Medium', 'DummyTask14', 'false', 2, 'None', 2, 2);
+INSERT INTO Tasks (Priority, Task, Complete, SCRUM, Remarks, TProjectID, TAssignedID) VALUES ('High', 'DummyTask15', 'true', 5, 'None', 3, 2);
+
+
+//Popuate Bugs
+
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy1.exe', 'Line 1 Dummy Code', 'There is no real code', 'Low Priority', 1, 1, 1);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy2.exe', 'Line 15 Dummy Code', 'There is no real code', 'Low Priority', 2, 1, 2);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy3.exe', 'Line 11 Dummy Code', 'There is no real code', 'Med Priority', 3, 3, 1);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy4.exe', 'Line 54 Dummy Code', 'There is no real code', 'High Priority', 2, 1, 2);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy5.exe', 'Line 12 Dummy Code', 'There is no real code', 'Low Priority', 3, 5, 4);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy6.exe', 'Line 11 Dummy Code', 'There is no real code', 'Low Priority', 1, 3, 2);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy7.exe', 'Line 21 Dummy Code', 'There is no real code', 'Low Priority', 3, 3, 1);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy8.exe', 'Line 54 Dummy Code', 'There is no real code', 'Med Priority', 2, 1, 2);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy9.exe', 'Line 23 Dummy Code', 'There is no real code', 'Unassigned', 3, 4, 4);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy10.exe', 'Line 12 Dummy Code', 'There is no real code', 'Low Priority', 3, 5, 4);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy11.exe', 'Line 97 Dummy Code', 'There is no real code', 'Med Priority', 1, 2, 3);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy12.exe', 'Line 54 Dummy Code', 'There is no real code', 'Low Priority', 2, 1, 1);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy13.exe', 'Line 59 Dummy Code', 'There is no real code', 'Low Priority', 2, 2, 3);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy14.exe', 'Line 78 Dummy Code', 'There is no real code', 'High Priority', 3, 5, 4);
+INSERT INTO Bugs (SourceFile, Location, Description, Status, BProjectID, BReporterID, BAssignedID) VALUES ('Dummy15.exe', 'Line 34 Dummy Code', 'There is no real code', 'Low Priority', 1, 3, 1);
+
+
+//Populate Forum
+
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is a comment', 1, 1);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is a comment reply', 1, 2);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('I can comment too', 1, 3);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('I can comment 4th', 1, 4);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('This forum sucks', 1, 5);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is a comment', 2, 1);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is a comment reply', 2, 2);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is the third comment', 2, 3);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Ill take over now', 2, 2);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('No you wont', 2, 1);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is a comment', 3, 4);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Hi this is a comment reply', 3, 5);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('And Ill talk some more', 3, 5);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('Ill cut you off', 3, 4);
+INSERT INTO Forum (Comment, FProjectID, FUserID) VALUES ('I got the last word', 3, 4);
